@@ -7,6 +7,23 @@ import javax.persistence.Id;
 public class Alien {
 	
 	@Id
+	private int _id;
+	public int get_id() {
+		return _id;
+	}
+
+	 static int c=1;
+
+	public static int addC() {
+		c+=1;
+		return c;
+	}
+
+
+
+	public void set_id(int _id) {
+		this._id = _id;
+	}
 	private int aid;
 	private String aname;
 	private String department;
@@ -14,6 +31,8 @@ public class Alien {
 	public int getAid() {
 		return aid;
 	}
+	
+
 	public String getDepartment() {
 		return department;
 	}
@@ -46,3 +65,5 @@ public class Alien {
 	
 	
 }
+
+

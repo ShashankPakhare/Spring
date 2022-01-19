@@ -22,6 +22,8 @@
 	<div class="container">
 	 <form class="form-inline" action="/addAlien" method="post">
   	<h1>Add New Employee</h1>
+  	
+  	
   <div class="form-group">
   
     <label for="exampleInputName1">ID :</label>
@@ -63,7 +65,7 @@
   <tbody>
   <c:forEach var="item" items="${a}">
     <tr>
-      
+     
       <td> ${item.aid}</td>
       <td> ${item.aname}</td>
       <td> ${item.department}</td>

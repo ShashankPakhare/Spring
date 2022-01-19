@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.dao.AlienRepo;
 import com.example.demo.model.Alien;
 
-import antlr.collections.List;
+//import antlr.collections.List;
 
 @Controller
 public class AlienController {
@@ -25,6 +25,7 @@ public class AlienController {
 	
 //EDIT REQUEST	
 	@RequestMapping
+	
 	public ModelAndView edit(@RequestParam int aid)
 	{
 		ModelAndView mv=new ModelAndView("details.js");
@@ -41,10 +42,10 @@ public class AlienController {
 	@RequestMapping("/")
 	public ModelAndView home()
 	{	ModelAndView mv=new ModelAndView("show.jsp");
-		//System.out.println("the value is"+aid);
+		
 		List<Alien> alien=repo.findAll();
 		System.out.println(alien);
-		//Alien alien=repo.findById(aid).orElse(new Alien());
+		
 		
 		mv.addObject("a",alien);
 		return mv;
@@ -56,7 +57,10 @@ public class AlienController {
 //adding new employees	
 	@RequestMapping("/addAlien")
 	public ModelAndView addAlien(Alien alien)
-	{  	repo.save(alien);
+	{  
+		alien.set_id(alien.getAid());
+		
+		repo.save(alien);
 		ModelAndView mv=new ModelAndView("show.jsp");
 	//System.out.println("the value is"+aid);
 		List<Alien> al=repo.findAll();
@@ -84,7 +88,7 @@ public class AlienController {
 	{	ModelAndView mv=new ModelAndView("details.jsp");
 		System.out.println("the value is"+aid);
 		
-		Alien alien=repo.findById(aid).orElse(new Alien());
+		Alien alien=repo.findByAid(aid);
 		
 		mv.addObject("a",alien);
 		return mv;
@@ -94,16 +98,30 @@ public class AlienController {
 	
 	
 //deleting repository	
+//	@GetMapping("/delete")
+//	
+//	public ModelAndView delete(@RequestParam int aid)
+//	{	
+//		ModelAndView mv=new ModelAndView("show.jsp");
+//		
+//		
+//		Alien b=repo.findById(aid).orElse(new Alien());
+//		repo.deleteById(aid);
+//		System.out.println("employee : "+ b.getAid() + ": "+b.getAname()+ " is deleted");
+//		List<Alien> alien=repo.findAll();
+//		mv.addObject("a",alien);
+//		return mv;
+//		
+//	}
+	
 	@GetMapping("/delete")
 	
 	public ModelAndView delete(@RequestParam int aid)
 	{	
 		ModelAndView mv=new ModelAndView("show.jsp");
+		System.out.println(repo.findByAid(aid));
+		repo.deleteByAid(aid);
 		
-		
-		Alien b=repo.findById(aid).orElse(new Alien());
-		repo.deleteById(aid);
-		System.out.println("employee : "+ b.getAid() + ": "+b.getAname()+ " is deleted");
 		List<Alien> alien=repo.findAll();
 		mv.addObject("a",alien);
 		return mv;
@@ -118,6 +136,7 @@ public class AlienController {
 		//System.out.println("the value is"+aid);
 		List<Alien> alien=repo.findAll();
 		System.out.println(alien);
+		
 		//Alien alien=repo.findById(aid).orElse(new Alien());
 		
 		mv.addObject("a",alien);
