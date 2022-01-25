@@ -1,37 +1,31 @@
 package com.example.demo.model;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class Alien {
 	
-	@Id
+
 	private int _id;
-	public int get_id() {
-		return _id;
-	}
 
-	 static int c=1;
-
-	public static int addC() {
-		c+=1;
-		return c;
-	}
-
-
-
-	public void set_id(int _id) {
-		this._id = _id;
-	}
 	private int aid;
 	private String aname;
 	private String department;
 	private int  salary;
+
+	public int get_id() {
+		return _id;
+	}
+
+	public void set_id(int _id) {
+		this._id = _id;
+	}
+
 	public int getAid() {
 		return aid;
 	}
-	
 
 	public String getDepartment() {
 		return department;
@@ -54,13 +48,21 @@ public class Alien {
 	public void setAname(String aname) {
 		this.aname = aname;
 	}
-//	@Override
-//	public String toString() {
-//		return "Alien [aid=" + aid + ", aname=" + aname + "]";
-//	}
+
 	@Override
 	public String toString() {
 		return "Alien [aid=" + aid + ", aname=" + aname + ", department=" + department + ", salary=" + salary + "]";
+	}
+
+	public Alien() {
+	}
+	public Alien(int aid,String aname,String department,int salary)
+	{
+		this.set_id(aid);
+		this.setAid(aid);
+		this.setAname(aname);
+		this.setDepartment(department);
+		this.setSalary(salary);
 	}
 	
 	
