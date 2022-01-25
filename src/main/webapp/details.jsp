@@ -21,7 +21,7 @@
 	<div class="container">
 	<div class="container">
 		
-	<form class="form-inline" action="/addAlien" method="post">
+	<form class="form-inline" action="/updateAlien" method="post">
   	<h1>Employee Details </h1>
   	
   <div class="form-group">
